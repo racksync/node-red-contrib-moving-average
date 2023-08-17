@@ -7,6 +7,7 @@
   
 
 "flow":[
+    
     {
         "id": "637727819e8b21c6",
         "type": "subflow",
@@ -20,6 +21,9 @@
                 "wires": [
                     {
                         "id": "745e5df815da0cdd"
+                    },
+                    {
+                        "id": "6d2bc2dd8e4c1fa2"
                     }
                 ]
             }
@@ -34,6 +38,16 @@
                         "port": 0
                     }
                 ]
+            },
+            {
+                "x": 710,
+                "y": 320,
+                "wires": [
+                    {
+                        "id": "6d2bc2dd8e4c1fa2",
+                        "port": 0
+                    }
+                ]
             }
         ],
         "env": [
@@ -44,7 +58,7 @@
                 "ui": {
                     "icon": "font-awesome/fa-line-chart",
                     "label": {
-                        "en-US": "Moving Size"
+                        "en-US": "Size"
                     },
                     "type": "input",
                     "opts": {
@@ -57,15 +71,19 @@
         ],
         "meta": {
             "module": "node-red-contrib-moving-average",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "author": "racksync <jack@racksync.com>",
             "desc": "Computes the moving average of incoming message payloads using a window size defined.",
-            "keywords": "Moving Average, Node-RED, Filter, RACKSYNC, Home Assistant",
+            "keywords": "Moving Average, Node-RED, Filter, RACKSYNC",
             "license": "MIT"
         },
         "color": "#befc03",
+        "inputLabels": [
+            "Input Payload"
+        ],
         "outputLabels": [
-            "computed data"
+            "Computed Data",
+            "Size"
         ],
         "icon": "font-awesome/fa-ellipsis-h",
         "status": {
@@ -84,7 +102,7 @@
         "type": "function",
         "z": "637727819e8b21c6",
         "name": "moving average functions",
-        "func": "const MAX_SIZE = 20;  // We want the moving average of the last 30 messages\n\n// Get the existing values or initialize an empty array if it doesn't exist yet\nlet values = context.get('values') || [];\n\n// Push the new value onto the array\nvalues.push(msg.payload);\n\n// If we have more than MAX_SIZE values, remove the oldest value\nwhile (values.length > MAX_SIZE) {\n    values.shift();\n}\n\n// Compute the moving average\nlet sum = values.reduce((acc, val) => acc + val, 0);\nlet average = sum / values.length;\n\n// Store the updated values array for future use\ncontext.set('values', values);\n\nmsg.payload = average;  // Send the average as the new payload\nreturn msg;\n",
+        "func": "let size = env.get(\"SIZE\");\n\nconst MAX_SIZE = size;  // We want the moving average of the last 30 messages\n\n// Get the existing values or initialize an empty array if it doesn't exist yet\nlet values = context.get('values') || [];\n\n// Push the new value onto the array\nvalues.push(msg.payload);\n\n// If we have more than MAX_SIZE values, remove the oldest value\nwhile (values.length > MAX_SIZE) {\n    values.shift();\n}\n\n// Compute the moving average\nlet sum = values.reduce((acc, val) => acc + val, 0);\nlet average = sum / values.length;\n\n// Store the updated values array for future use\ncontext.set('values', values);\n\nmsg.payload = average;  // Send the average as the new payload\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -97,18 +115,46 @@
         ]
     },
     {
+        "id": "6d2bc2dd8e4c1fa2",
+        "type": "function",
+        "z": "637727819e8b21c6",
+        "name": "size debug",
+        "func": "let size = env.get(\"SIZE\");\n\n\nmsg.payload = { \"Size\": size };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "63337b400338d9c2",
         "type": "subflow:637727819e8b21c6",
         "z": "8e07a14948ef83fa",
         "name": "",
+        "env": [
+            {
+                "name": "SIZE",
+                "value": "35.6",
+                "type": "num"
+            }
+        ],
         "x": 660,
         "y": 360,
         "wires": [
             [
                 "f8741352f0fd3428"
+            ],
+            [
+                "bf408eca6eb4a132"
             ]
         ]
     }
+
   
 ] 
 }
