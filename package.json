@@ -1,6 +1,6 @@
 {
   "name": "@racksync/node-red-contrib-moving-average",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Computes the moving average of incoming message payloads using a window size defined.",
   "homepage": "https://github.com/racksync/node-red-contrib-moving-average",
   "bugs": {
@@ -12,7 +12,7 @@
   "node-red": {
     "version": ">=2.0.0",
     "nodes": {
-        "Low Pass Filter": "flows/low-pass-filter.js"
+        "Moving Average": "flows/moving-average.js"
     }
   },
   "engines": {
