@@ -7,10 +7,10 @@ Have you ever been in need to compute a running average of your incoming data in
 
 ## Features:
 
-🚀 Adjustable Window Size: The default window size is set to 20, but feel free to modify Windows Size to fit your specific needs.
-🚀 Efficient Storage: Only the most recent data points up to Windows Size are stored, ensuring optimal memory usage.
-🚀  Easy Integration: The script is plug-and-play! Simply integrate it into your Node-RED flow, and you're good to go.
-🚀 Feel free to contribute, suggest improvements, or report any issues you face. Let's make data processing smoother for everyone! 😊
+- 🚀 Adjustable Window Size: The default window size is set to 20, but feel free to modify Windows Size to fit your specific needs.
+- 🚀 Efficient Storage: Only the most recent data points up to Windows Size are stored, ensuring optimal memory usage.
+- 🚀 Easy Integration: The script is plug-and-play! Simply integrate it into your Node-RED flow, and you're good to go.
+- 🚀 Feel free to contribute, suggest improvements, or report any issues you face. Let's make data processing smoother for everyone!
 
 # Installation
 
@@ -22,7 +22,7 @@ npm install node-red-contrib-moving-average --save
 
 # Usage
 
-Put "Movng Average" into your flow workspace as you wish
+Put "Movng Average" into your flow workspace and fill ```size``` as you wish.
 
 ![racksync-screenshot](https://github.com/racksync/node-red-contrib-moving-average/blob/main/images/screenshot.png?raw=true)
 
