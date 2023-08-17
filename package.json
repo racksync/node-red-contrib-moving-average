@@ -1,0 +1,23 @@
+{
+  "name": "@racksync/node-red-contrib-moving-average",
+  "version": "0.0.1",
+  "description": "Computes the moving average of incoming message payloads using a window size defined.",
+  "homepage": "https://github.com/racksync/node-red-contrib-moving-average",
+  "bugs": {
+    "url": "https://github.com/racksync/node-red-contrib-moving-average/issues",
+    "email" : "bugs@racksync.com"
+  },
+  "dependencies": [],
+  "keywords": [ "node-red","Home Assistant", "HASS", "RACKSYNC", "Noise", "Moving Average", "Filter" ],
+  "node-red": {
+    "version": ">=2.0.0",
+    "nodes": {
+        "Low Pass Filter": "flows/low-pass-filter.js"
+    }
+  },
+  "engines": {
+      "node": ">=12.0.0"
+    },
+  "author": "RACKSYNC CO., LTD. <jack@racksync.com>",
+  "license": "MIT"
+}

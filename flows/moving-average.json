@@ -1,0 +1,114 @@
+{
+    "id": "3e85e6a5f3bc71b9",
+    "type": "subflow",
+    "name": "Moving Average",
+    "info": "Computes the moving average of incoming message payloads using a window size defined.",
+    "category": "RACKSYNC",
+  
+
+"flow":[
+    {
+        "id": "637727819e8b21c6",
+        "type": "subflow",
+        "name": "Moving Average",
+        "info": "This script computes the moving average of incoming message payloads using a window size defined. It stores the recent values up to define size in context and updates the message payload with the computed average.",
+        "category": "RACKSYNC",
+        "in": [
+            {
+                "x": 320,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "745e5df815da0cdd"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 740,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "745e5df815da0cdd",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "SIZE",
+                "type": "num",
+                "value": "20",
+                "ui": {
+                    "icon": "font-awesome/fa-line-chart",
+                    "label": {
+                        "en-US": "Moving Size"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "num"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {
+            "module": "node-red-contrib-moving-average",
+            "version": "0.0.1",
+            "author": "racksync <jack@racksync.com>",
+            "desc": "Computes the moving average of incoming message payloads using a window size defined.",
+            "keywords": "Moving Average, Node-RED, Filter, RACKSYNC, Home Assistant",
+            "license": "MIT"
+        },
+        "color": "#befc03",
+        "outputLabels": [
+            "computed data"
+        ],
+        "icon": "font-awesome/fa-ellipsis-h",
+        "status": {
+            "x": 420,
+            "y": 120,
+            "wires": [
+                {
+                    "id": "637727819e8b21c6",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "745e5df815da0cdd",
+        "type": "function",
+        "z": "637727819e8b21c6",
+        "name": "moving average functions",
+        "func": "const MAX_SIZE = 20;  // We want the moving average of the last 30 messages\n\n// Get the existing values or initialize an empty array if it doesn't exist yet\nlet values = context.get('values') || [];\n\n// Push the new value onto the array\nvalues.push(msg.payload);\n\n// If we have more than MAX_SIZE values, remove the oldest value\nwhile (values.length > MAX_SIZE) {\n    values.shift();\n}\n\n// Compute the moving average\nlet sum = values.reduce((acc, val) => acc + val, 0);\nlet average = sum / values.length;\n\n// Store the updated values array for future use\ncontext.set('values', values);\n\nmsg.payload = average;  // Send the average as the new payload\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63337b400338d9c2",
+        "type": "subflow:637727819e8b21c6",
+        "z": "8e07a14948ef83fa",
+        "name": "",
+        "x": 660,
+        "y": 360,
+        "wires": [
+            [
+                "f8741352f0fd3428"
+            ]
+        ]
+    }
+  
+] 
+}
