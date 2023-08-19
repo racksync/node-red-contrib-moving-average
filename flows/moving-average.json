@@ -71,7 +71,7 @@
         ],
         "meta": {
             "module": "node-red-contrib-moving-average",
-            "version": "0.0.3",
+            "version": "0.0.4",
             "author": "racksync <jack@racksync.com>",
             "desc": "Computes the moving average of incoming message payloads using a window size defined.",
             "keywords": "Moving Average, Node-RED, Filter, RACKSYNC",
