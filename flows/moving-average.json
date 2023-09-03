@@ -4,99 +4,97 @@
     "name": "Moving Average",
     "info": "Computes the moving average of incoming message payloads using a window size defined.",
     "category": "RACKSYNC",
-  
-
-"flow":[
-    
-    {
-        "id": "637727819e8b21c6",
-        "type": "subflow",
-        "name": "Moving Average",
-        "info": "This script computes the moving average of incoming message payloads using a window size defined. It stores the recent values up to define size in context and updates the message payload with the computed average.",
-        "category": "RACKSYNC",
-        "in": [
-            {
-                "x": 320,
-                "y": 200,
-                "wires": [
-                    {
-                        "id": "745e5df815da0cdd"
-                    },
-                    {
-                        "id": "6d2bc2dd8e4c1fa2"
-                    }
-                ]
-            }
-        ],
-        "out": [
-            {
-                "x": 740,
-                "y": 120,
-                "wires": [
-                    {
-                        "id": "745e5df815da0cdd",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 710,
-                "y": 320,
-                "wires": [
-                    {
-                        "id": "6d2bc2dd8e4c1fa2",
-                        "port": 0
-                    }
-                ]
-            }
-        ],
-        "env": [
-            {
-                "name": "SIZE",
-                "type": "num",
-                "value": "20",
-                "ui": {
-                    "icon": "font-awesome/fa-line-chart",
-                    "label": {
-                        "en-US": "Size"
-                    },
-                    "type": "input",
-                    "opts": {
-                        "types": [
-                            "num"
-                        ]
-                    }
+    "id": "637727819e8b21c6",
+    "type": "subflow",
+    "name": "Moving Average",
+    "info": "This script computes the moving average of incoming message payloads using a window size defined. It stores the recent values up to define size in context and updates the message payload with the computed average.",
+    "category": "RACKSYNC",
+    "in": [
+        {
+            "x": 320,
+            "y": 200,
+            "wires": [
+                {
+                    "id": "745e5df815da0cdd"
+                },
+                {
+                    "id": "6d2bc2dd8e4c1fa2"
                 }
-            }
-        ],
-        "meta": {
-            "module": "node-red-contrib-moving-average",
-            "version": "0.0.4",
-            "author": "racksync <jack@racksync.com>",
-            "desc": "Computes the moving average of incoming message payloads using a window size defined.",
-            "keywords": "Moving Average, Node-RED, Filter, RACKSYNC",
-            "license": "MIT"
-        },
-        "color": "#befc03",
-        "inputLabels": [
-            "Input Payload"
-        ],
-        "outputLabels": [
-            "Computed Data",
-            "Size"
-        ],
-        "icon": "font-awesome/fa-ellipsis-h",
-        "status": {
-            "x": 420,
+            ]
+        }
+    ],
+    "out": [
+        {
+            "x": 740,
             "y": 120,
             "wires": [
                 {
-                    "id": "637727819e8b21c6",
+                    "id": "745e5df815da0cdd",
+                    "port": 0
+                }
+            ]
+        },
+        {
+            "x": 710,
+            "y": 320,
+            "wires": [
+                {
+                    "id": "6d2bc2dd8e4c1fa2",
                     "port": 0
                 }
             ]
         }
+    ],
+    "env": [
+        {
+            "name": "SIZE",
+            "type": "num",
+            "value": "20",
+            "ui": {
+                "icon": "font-awesome/fa-line-chart",
+                "label": {
+                    "en-US": "Size"
+                },
+                "type": "input",
+                "opts": {
+                    "types": [
+                        "num"
+                    ]
+                }
+            }
+        }
+    ],
+    "meta": {
+        "module": "node-red-contrib-moving-average",
+        "version": "0.0.5",
+        "author": "racksync <jack@racksync.com>",
+        "desc": "Computes the moving average of incoming message payloads using a window size defined.",
+        "keywords": "Moving Average, Node-RED, Filter, RACKSYNC",
+        "license": "MIT"
     },
+    "color": "#befc03",
+    "inputLabels": [
+        "Input Payload"
+    ],
+    "outputLabels": [
+        "Computed Data",
+        "Size"
+    ],
+    "icon": "font-awesome/fa-ellipsis-h",
+    "status": {
+        "x": 420,
+        "y": 120,
+        "wires": [
+            {
+                "id": "637727819e8b21c6",
+                "port": 0
+            }
+        ]
+    },
+  
+
+"flow":[
+
     {
         "id": "745e5df815da0cdd",
         "type": "function",
